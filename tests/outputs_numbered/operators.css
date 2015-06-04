@@ -132,7 +132,7 @@ div {
   margin: -0.5em; }
 /* line 155, operators.scss */
 .alt .d {
-  margin: 0 -1em / 2; }
+  margin: 0 -0.5em; }
 /* line 156, operators.scss */
 .alt .e {
   margin: 0 -0.5em; }

@@ -11,8 +11,23 @@ div {
   background: this;
   border: what;
   border: is;
-  border: this; }
-/* line 23, looping.scss */
+  border: this;
+  background: what what;
+  background: is is;
+  background: this this;
+  background: what what;
+  background: is is;
+  background: this this;
+  /* line 30, looping.scss */
+  /* line 30, looping.scss */
+  /* line 30, looping.scss */ }
+  div h1 {
+    font-size: 2em; }
+  div h2 {
+    font-size: 1.5em; }
+  div h3 {
+    font-size: 1.2em; }
+/* line 38, looping.scss */
 span {
   color: 0;
   color: 1;
@@ -25,7 +40,7 @@ span {
   color: 8;
   color: 9;
   color: 10; }
-/* line 31, looping.scss */
+/* line 46, looping.scss */
 pre {
   color: 1;
   color: 2;

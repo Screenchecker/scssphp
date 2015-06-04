@@ -51,8 +51,14 @@
 #string {
   color: hello what is going on;
   color: "yeah";
-  color: "I do?"; }
-/* line 81, builtins.scss */
+  color: "I do?";
+  color: 2;
+  color: sinserttring;
+  color: 6;
+  color: tri;
+  color: 'string';
+  color: STRING; }
+/* line 87, builtins.scss */
 #number {
   color: 250%;
   color: 3;
@@ -63,7 +69,7 @@
   width: 200%;
   bottom: 10px;
   padding: 3em 1in 96px 72pt; }
-/* line 94, builtins.scss */
+/* line 100, builtins.scss */
 #list {
   len: 3;
   len: 1;
@@ -80,7 +86,7 @@
   index: false;
   index: 2;
   index: 2;
-  /* line 115, builtins.scss */
+  /* line 121, builtins.scss */
   index: 1;
   world: one, two, three, great, job;
   world: one, two, three, great job;
@@ -88,7 +94,7 @@
   cool: great job one two three;
   zip: 1px solid, 2px dashed;
   zip: 1px solid red, 2px dashed green; }
-/* line 129, builtins.scss */
+/* line 135, builtins.scss */
 #introspection {
   t: number;
   t: string;
@@ -108,19 +114,19 @@
   c: true;
   c: false;
   c: true; }
-/* line 153, builtins.scss */
+/* line 159, builtins.scss */
 #if {
   color: yes;
   color: no;
   color: yes;
   color: yes; }
-/* line 160, builtins.scss */
+/* line 166, builtins.scss */
 .transparent {
   r: 0;
   g: 0;
   b: 0;
   a: 0; }
-/* line 167, builtins.scss */
+/* line 173, builtins.scss */
 .alpha {
   a: 1;
   a: 1;

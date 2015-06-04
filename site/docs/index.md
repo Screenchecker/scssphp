@@ -190,6 +190,57 @@ The formatters output the following:
     .navigation ul{line-height:20px;color:blue;}.navigation ul a{color:red;}.footer .copyright{color:silver;}
     ```
 
+### SCSS line numbers
+
+You can output the original SCSS line numbers within the compiled CSS file for better frontend debugging.
+
+This works well in combination with frontend debugging tools such as https://addons.mozilla.org/de/firefox/addon/firecompass-for-firebug/
+
+To activate this feature, call `->setLineNumbers(true)` after creating a new instance of class `Compiler`.
+
+    ```php
+    namespace Leafo\ScssPhp;
+
+    use Leafo\ScssPhp\Server;
+    use Leafo\ScssPhp\Compiler;
+
+    require 'lib/scssphp/scss.inc.php';
+
+    $directory = 'css';
+
+    $scss = new Compiler();
+    $scss->setLineNumbers(true);
+
+    $server = new Server($directory, null, $scss);
+    $server->serve();
+    ```
+
+You can also call the `compile` method directly (without using an instance of `Server` like above)
+
+    ```php
+    namespace Leafo\ScssPhp;
+
+    use Leafo\ScssPhp\Server;
+    use Leafo\ScssPhp\Compiler;
+
+    require 'lib/scssphp/scss.inc.php';
+
+    $scss = new Compiler();
+
+    // the name argument is optional
+    $scss->setLineNumbers(true, 'anyname.scss');
+
+    echo $scss->compile('
+      $color: #abc;
+      div { color: lighten($color, 20%); }
+    ');
+    ```
+
+The performance impact is around 10% when a new CSS file is compiled with line numbers, compared to the same file without line numbers.
+
+**Important**: This feature should only be used with the `Expanded` and `Nested` formatters. Other formatters remove the line breaks
+needed by frontend debugging tools to accurately display the corresponding line from the comment.
+
 ### Custom Functions
 
 It's possible to register custom functions written in PHP that can be called
@@ -246,7 +297,6 @@ together. PHP's anonymous function syntax is used to define the function.
 It's worth noting that in this example we lose the units of the number, and we
 also don't do any type checking. This will have undefined results if we give it
 anything other than two numbers.
-
 
 ## SCSS Server
 
@@ -331,7 +381,6 @@ Here's an example of creating a SCSS server that outputs compressed CSS:
     $server->serve();
     ```
 
-
 ## Command Line Tool
 
 A really basic command line tool is included for integration with scripts. It
@@ -353,6 +402,9 @@ The flag `-f` (or `--style`) can be used to set the [formatter](#Output_formatti
     ```bash
     $ bin/pscss -f compressed < styles.scss
     ```
+
+The flag `--line-numbers` (or `--line-comments`) can be used to enable annotated selectors where
+a comment refers to the source line and file.
 
 The flag `-i` (or `--load_paths`) can be used to set import paths for the loader. On Unix/Linux systems,
 the paths are colon separated.

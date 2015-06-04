@@ -21,9 +21,7 @@ class InputTest extends \PHPUnit_Framework_TestCase
 {
     protected static $inputDir = 'inputs';
     protected static $outputDir = 'outputs';
-
-    protected static $line_number_suffix = '_numbered';
-
+    protected static $outputNumberedDir = 'outputs_numbered';
 
     public function setUp()
     {
@@ -36,7 +34,6 @@ class InputTest extends \PHPUnit_Framework_TestCase
      */
     public function testInputFile($inFname, $outFname)
     {
-
         if (getenv('BUILD')) {
             return $this->buildInput($inFname, $outFname);
         }
@@ -45,39 +42,34 @@ class InputTest extends \PHPUnit_Framework_TestCase
             $this->fail("$outFname is missing, consider building tests with BUILD=true");
         }
 
-
         $input = file_get_contents($inFname);
         $output = file_get_contents($outFname);
 
         $this->assertEquals($output, $this->scss->compile($input));
     }
 
-    /*
-     * run all tests with line numbering
-     */
-
     /**
-     * @dataProvider fileNameProvider
+     * Run all tests with line numbering
+     *
+     * @dataProvider numberedFileNameProvider
      */
-
-    public function testLineNumbering($inFname, $outFname) {
-
-        $outPath = self::lineNumberOutPath($outFname);
-
+    public function testLineNumbering($inFname, $outFname)
+    {
         //insert line numbers
-        $scss = LineCommentator::insertLineComments(file($inFname), self::fileName($inFname));
+        $scss = LineCommentator::insertLineComments(file($inFname), basename($inFname));
 
         if (getenv('BUILD')) {
             //write css
             $css = $this->scss->compile($scss);
-            file_put_contents($outPath, $css);
+
+            file_put_contents($outFname, $css);
         }
 
-        if (!is_readable($outPath)) {
-            $this->fail("$outPath is missing, consider building tests with BUILD=true");
+        if (!is_readable($outFname)) {
+            $this->fail("$outFname is missing, consider building tests with BUILD=true");
         }
 
-        $output = file_get_contents($outPath);
+        $output = file_get_contents($outFname);
 
         $this->assertEquals($output, $this->scss->compile($scss));
     }
@@ -87,6 +79,16 @@ class InputTest extends \PHPUnit_Framework_TestCase
         return array_map(
             function ($a) {
                 return array($a, InputTest::outputNameFor($a));
+            },
+            self::findInputNames()
+        );
+    }
+
+    public function numberedFileNameProvider()
+    {
+        return array_map(
+            function ($a) {
+                return array($a, InputTest::outputNumberedNameFor($a));
             },
             self::findInputNames()
         );
@@ -103,6 +105,7 @@ class InputTest extends \PHPUnit_Framework_TestCase
     {
         $files = glob(__DIR__ . '/' . self::$inputDir . '/' . $pattern);
         $files = array_filter($files, 'is_file');
+
         if ($pattern = getenv('MATCH')) {
             $files = array_filter($files, function ($fname) use ($pattern) {
                 return preg_match("/$pattern/", $fname);
@@ -119,11 +122,22 @@ class InputTest extends \PHPUnit_Framework_TestCase
 
         $in = _quote(self::$inputDir . '/');
         $out = preg_replace("/$in/", self::$outputDir . '/', $out);
-        $out = preg_replace("/.scss$/", '.css', $out);
+        $out = preg_replace('/.scss$/' , '.css', $out);
 
         return __DIR__ . '/' . $out;
     }
 
+    public static function outputNumberedNameFor($input)
+    {
+        $front = _quote(__DIR__ . '/');
+        $out = preg_replace("/^$front/", '', $input);
+
+        $in = _quote(self::$inputDir . '/');
+        $out = preg_replace("/$in/", self::$outputNumberedDir . '/', $out);
+        $out = preg_replace('/.scss$/' , '.css', $out);
+
+        return __DIR__ . '/' . $out;
+    }
 
     public static function buildTests($pattern)
     {
@@ -131,33 +145,5 @@ class InputTest extends \PHPUnit_Framework_TestCase
 
         foreach ($files as $file) {
         }
-    }
-
-    /*
-     * return output filename inlcuding line_number_suffix
-     *
-     * @return string
-     */
-
-
-    public static function lineNumberOutPath($outFname) {
-
-        $outFname = preg_replace("/.css$/", self::$line_number_suffix.'.css', self::fileName($outFname));
-
-        return __DIR__ .'/'.self::$outputDir . '/' . $outFname;
-    }
-
-
-    /*
-     * return filename from path
-     *
-     * @return string
-     */
-
-
-    public static function fileName($path) {
-
-        $filename = explode('/',$path);
-        return end($filename);
     }
 }

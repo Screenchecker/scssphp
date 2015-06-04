@@ -9,3 +9,10 @@ p a.notice span, p a.error span, #context a.notice span, #context a.error span {
 p {
   padding: 2em; }
 /* line 18, placeholder_selector.scss */
+/* line 22, placeholder_selector.scss */
+
+.layout {
+  color: red; }
+/* line 26, placeholder_selector.scss */
+.layout {
+  /* line 27, placeholder_selector.scss */ }
