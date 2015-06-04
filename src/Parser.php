@@ -450,6 +450,8 @@ class Parser
             $this->literal(':') &&
             $this->valueList($value) && $this->end()
         ) {
+            // TODO: handle !global
+
             // check for !default
             $defaultVar = $value[0] == 'list' && $this->stripDefault($value);
             $this->append(array('assign', $name, $value, $defaultVar), $s);
