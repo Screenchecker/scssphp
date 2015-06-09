@@ -17,16 +17,16 @@ div {
   background: this this;
   background: what what;
   background: is is;
-  background: this this;
+  background: this this; }
   /* line 30, looping.scss */
+    div h1 {
+      font-size: 2em; }
   /* line 30, looping.scss */
-  /* line 30, looping.scss */ }
-  div h1 {
-    font-size: 2em; }
-  div h2 {
-    font-size: 1.5em; }
-  div h3 {
-    font-size: 1.2em; }
+    div h2 {
+      font-size: 1.5em; }
+  /* line 30, looping.scss */
+    div h3 {
+      font-size: 1.2em; }
 /* line 38, looping.scss */
 span {
   color: 0;

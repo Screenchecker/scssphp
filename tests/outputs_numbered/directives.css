@@ -1,89 +1,87 @@
 @charset "hello-world";
-/* line 4, directives.scss */
+/* line 2, directives.scss */
 @page :left {
-  /* line 5, directives.scss */
+/* line 3, directives.scss */
   div {
     color: red; } }
-/* line 10, directives.scss */
+
 @page test {
-  /* line 11, directives.scss */
+/* line 10, directives.scss */
+/* line 11, directives.scss */
   @media yes {
     /* line 12, directives.scss */
-    /* line 16, directives.scss */
       div {
-        color: red; } } }
-/* line 24, directives.scss */
+        color: red; }
+
+    /* line 16, directives.scss */ } }
+
 @media something {
-  /* line 25, directives.scss */
+  /* line 26, directives.scss */
+
+  /* line 27, directives.scss */
     @page {
-      /* line 26, directives.scss */
+  /* line 28, directives.scss */
     @media else {
-      /* line 27, directives.scss */
+      /* line 29, directives.scss */
         div {
           height: 200px; } } } }
-/* line 35, directives.scss */
+/* line 37, directives.scss */
 div {
-  color: red;
-  /* line 37, directives.scss */ }
+  color: red; }
+
+/* line 39, directives.scss */
   @page yeah {
-    /* line 38, directives.scss */
+/* line 40, directives.scss */
   div pre {
     height: 20px; } }
-/* line 44, directives.scss */
+/* line 46, directives.scss */
 @font-face {
   color: red;
   height: 20px; }
-/* line 50, directives.scss */
+/* line 52, directives.scss */
 @keyframes 'bounce' {
-  /* line 51, directives.scss */
-  /* line 56, directives.scss */
-  /* line 61, directives.scss */
-  /* line 66, directives.scss */
-  /* line 71, directives.scss */
+/* line 53, directives.scss */
   from {
     top: 100px;
     animation-timing-function: ease-out; }
-
+/* line 58, directives.scss */
   25% {
     top: 50px;
     animation-timing-function: ease-in; }
-
+/* line 63, directives.scss */
   50% {
     top: 100px;
     animation-timing-function: ease-out; }
-
+/* line 68, directives.scss */
   75% {
     top: 75px;
     animation-timing-function: ease-in; }
-
+/* line 73, directives.scss */
   to {
     top: 100px; } }
-/* line 76, directives.scss */
+/* line 78, directives.scss */
 @-webkit-keyframes flowouttoleft {
-  /* line 77, directives.scss */
-  /* line 78, directives.scss */
-  /* line 79, directives.scss */
+/* line 79, directives.scss */
   0% {
     -webkit-transform: translateX(0) scale(1); }
-
+/* line 80, directives.scss */
   60%, 70% {
     -webkit-transform: translateX(0) scale(0.7); }
-
+/* line 81, directives.scss */
   100% {
     -webkit-transform: translateX(-100%) scale(0.7); } }
-/* line 82, directives.scss */
+/* line 84, directives.scss */
 div {
   animation-name: 'diagonal-slide';
   animation-duration: 5s;
   animation-iteration-count: 10; }
-/* line 88, directives.scss */
+/* line 90, directives.scss */
 @keyframes 'diagonal-slide' {
-  /* line 90, directives.scss */
-  /* line 95, directives.scss */
+/* line 92, directives.scss */
   from {
     left: 0;
     top: 0; }
-
+/* line 97, directives.scss */
   to {
     left: 100px;
     top: 100px; } }
@@ -91,9 +89,9 @@ div {
 @document url(http://www.w3.org/),
 url-prefix(http://www.w3.org/Style/),
 domain(mozilla.org),
-/* line 105, directives.scss */
+/* line 107, directives.scss */
 regexp("https:.*") {
-  /* line 107, directives.scss */
+/* line 109, directives.scss */
   body {
     color: purple;
     background: yellow; } }

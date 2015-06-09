@@ -1,7 +1,6 @@
 /* line 12, map.scss */
 div {
   color: black;
-  /* line 14, map.scss */
   color: red;
   foo: black, red, #0f0;
   bar: color, length;
